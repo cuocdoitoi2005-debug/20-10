@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f06292">
+<meta property="og:title" content="Chúc mừng ngày Phụ nữ Việt Nam 20/10 💐">
+<meta property="og:description" content="Một lời chúc dành riêng cho bạn">
+<title>Chúc mừng 20/10 💐</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#4a1f3a;overflow:hidden;
+       background:linear-gradient(160deg,#ffe3ec 0%,#ffc1d6 45%,#f8a5c2 100%);
+       min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;
+       padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+  #petals{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .petal{position:absolute;top:-30px;width:18px;height:18px;border-radius:60% 0 60% 0;opacity:.85;
+         background:radial-gradient(circle at 30% 30%,#fff0f5,#f48fb1);animation:fall linear infinite}
+  @keyframes fall{0%{transform:translate3d(0,-5vh,0) rotate(0)}100%{transform:translate3d(var(--dx),110vh,0) rotate(720deg)}}
+
+  /* ---- phong bì ---- */
+  #env{position:relative;z-index:2;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+  .envelope{width:min(78vw,300px);aspect-ratio:3/2;margin:0 auto 22px;position:relative;filter:drop-shadow(0 14px 28px rgba(160,40,90,.28))}
+  .envelope .back{position:absolute;inset:0;background:#fff;border-radius:14px}
+  .envelope .flap{position:absolute;left:0;right:0;top:0;height:55%;background:#fce4ec;border-radius:14px 14px 0 0;
+                  clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s cubic-bezier(.4,0,.2,1);z-index:3}
+  .envelope .body{position:absolute;inset:0;background:linear-gradient(#fff6f9,#ffdbe7);border-radius:14px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);z-index:2}
+  .envelope .seal{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:#e91e63;color:#fff;
+                  display:flex;align-items:center;justify-content:center;font-size:28px;z-index:4;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:transform .4s}
+  #env.open .flap{transform:rotateX(180deg)}
+  #env.open .seal{transform:translate(-50%,-50%) scale(0)}
+  #env h1{font-size:clamp(24px,7vw,34px);color:#c2185b;letter-spacing:.5px}
+  #env p{margin-top:8px;font-size:16px;color:#8e2d5c;animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+
+  /* ---- thiệp ---- */
+  #card{position:relative;z-index:2;width:min(100%,460px);max-height:92dvh;overflow:auto;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);
+        border-radius:26px;padding:34px 26px 28px;text-align:center;box-shadow:0 18px 50px rgba(160,40,90,.25);
+        display:none;opacity:0;transform:translateY(30px) scale(.96);transition:opacity .8s,transform .8s}
+  #card.show{display:block}
+  #card.in{opacity:1;transform:none}
+  #card .flower{font-size:52px;line-height:1;margin-bottom:10px;animation:sway 3s ease-in-out infinite;display:inline-block}
+  @keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+  #card h2{font-size:clamp(22px,6.4vw,30px);color:#c2185b;line-height:1.25}
+  #card .day{font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#ad5a82;margin:8px 0 18px}
+  #card .to{font-size:19px;font-weight:600;color:#6a1b4d;margin-bottom:12px}
+  #card .msg{font-size:17.5px;line-height:1.75;color:#4a1f3a;text-align:left}
+  #card .msg p{margin-bottom:12px}
+  #card .msg p:last-child{margin-bottom:0}
+  #card .from{margin-top:20px;font-style:italic;color:#8e2d5c;font-size:16px}
+  #card .line{width:60px;height:3px;background:linear-gradient(90deg,#f48fb1,#e91e63);border-radius:3px;margin:18px auto 0}
+  #again{margin-top:22px;border:0;background:#e91e63;color:#fff;font-size:15px;font-weight:600;padding:12px 22px;border-radius:999px;box-shadow:0 6px 16px rgba(233,30,99,.35)}
+</style>
+</head>
+<body>
+<div id="petals"></div>
+
+<div id="env" role="button" aria-label="Mở thiệp">
+  <div class="envelope"><div class="back"></div><div class="body"></div><div class="flap"></div><div class="seal">💌</div></div>
+  <h1>Có một lời chúc<br>dành cho bạn</h1>
+  <p>Chạm để mở thiệp</p>
+</div>
+
+<div id="card">
+  <div class="flower">💐</div>
+  <h2>Chúc mừng ngày<br>Phụ nữ Việt Nam</h2>
+  <div class="day">20 · 10</div>
+  <div class="to" id="to"></div>
+  <div class="msg" id="msg">
+    <p>Chúc bạn luôn xinh đẹp, rạng rỡ và hạnh phúc.</p>
+    <p>Cảm ơn bạn vì đã luôn dịu dàng, mạnh mẽ và truyền cảm hứng cho mọi người xung quanh.</p>
+    <p>Mong mọi điều tốt đẹp nhất sẽ đến với bạn, hôm nay và mãi về sau! 🌸</p>
+  </div>
+  <div class="line"></div>
+  <div class="from" id="from"></div>
+  <button id="again" type="button">Xem lại 💌</button>
+</div>
+
+<script>
+(function(){
+  // ---- cánh hoa rơi (số lượng theo kích thước màn hình để điện thoại không giật) ----
+  const wrap=document.getElementById('petals'), n=Math.min(28,Math.round(innerWidth/14));
+  for(let i=0;i<n;i++){
+    const p=document.createElement('span'); p.className='petal';
+    const s=12+Math.random()*14; p.style.width=p.style.height=s+'px';
+    p.style.left=Math.random()*100+'vw'; p.style.setProperty('--dx',(Math.random()*160-80)+'px');
+    p.style.animationDuration=(7+Math.random()*8)+'s'; p.style.animationDelay=(-Math.random()*15)+'s';
+    p.style.opacity=.5+Math.random()*.4; wrap.appendChild(p);
+  }
+  // ---- cá nhân hoá qua link: ?ten=Lan&tu=Minh ----
+  const q=new URLSearchParams(location.search), ten=(q.get('ten')||'').trim(), tu=(q.get('tu')||'').trim();
+  if(ten) document.getElementById('to').textContent='Gửi '+ten+' thân mến,';
+  if(tu) document.getElementById('from').textContent='— '+tu;
+  // ---- mở thiệp ----
+  const env=document.getElementById('env'), card=document.getElementById('card');
+  function open(){
+    if(env.classList.contains('open')) return;
+    env.classList.add('open');
+    setTimeout(()=>{env.style.display='none'; card.classList.add('show'); requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add('in')));},750);
+  }
+  env.addEventListener('click',open);
+  document.getElementById('again').addEventListener('click',()=>{
+    card.classList.remove('in'); setTimeout(()=>{card.classList.remove('show'); env.style.display=''; env.classList.remove('open');},400);
+  });
+})();
+</script>
+</body>
+</html>
